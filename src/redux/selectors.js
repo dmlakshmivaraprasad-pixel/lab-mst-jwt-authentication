@@ -1,7 +1,13 @@
-export const selectPostText = (state) => state.post.text;
+export const selectPosts = (state) => {
+    return state.posts.posts;
+};
 
-export const selectSelectedPlatforms = (state) =>
-    state.post.selectedPlatforms;
+export const selectTotalPosts = (state) => {
+    return state.posts.posts.length;
+};
 
-export const selectCharacterCount = (state) =>
-    state.post.text.length;
+export const selectReactPosts = (state) => {
+    return state.posts.posts.filter(
+        (post) => post.category === "React"
+    );
+};

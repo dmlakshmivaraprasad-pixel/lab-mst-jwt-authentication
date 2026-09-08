@@ -1,62 +1,50 @@
-import { useSelector } from "react-redux";
-import {
-    selectPostText,
-    selectSelectedPlatforms,
-} from "../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
 
-const platformRules = {
-    Instagram: 2200,
-    "Twitter / X": 280,
-    LinkedIn: 3000,
-    Facebook: 63206,
-};
+import { deletePost } from "../redux/postSlice";
+
+import { selectPosts } from "../redux/selectors";
+
 
 function PostList() {
-    const text = useSelector(selectPostText);
-    const selectedPlatforms = useSelector(selectSelectedPlatforms);
 
-    const characterCount = text.length;
+    const dispatch = useDispatch();
 
-    if (selectedPlatforms.length === 0) {
-        return (
-            <div className="empty-message">
-                Select at least one platform to see validation.
-            </div>
-        );
-    }
+    const posts = useSelector(selectPosts);
+
+
+    const handleDelete = (id) => {
+        dispatch(deletePost(id));
+    };
+
 
     return (
-        <div>
-            {selectedPlatforms.map((platform) => {
-                const limit = platformRules[platform];
+        <div className="post-list">
 
-                const isValid = characterCount <= limit;
+            {posts.map((post) => (
 
-                return (
-                    <div className="validation-card" key={platform}>
-                        <h3>{platform}</h3>
+                <div
+                    className="post-card"
+                    key={post.id}
+                >
 
-                        <p className="limit">
-                            {characterCount.toLocaleString()} /{" "}
-                            {limit.toLocaleString()} characters
-                        </p>
+                    <h2>{post.title}</h2>
 
-                        <p
-                            className={
-                                isValid
-                                    ? "status valid"
-                                    : "status invalid"
-                            }
-                        >
-                            {isValid
-                                ? "✓ Valid"
-                                : "✗ Too many characters"}
-                        </p>
-                    </div>
-                );
-            })}
+                    <p>{post.description}</p>
+
+                    <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(post.id)}
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            ))}
+
         </div>
     );
 }
+
 
 export default PostList;

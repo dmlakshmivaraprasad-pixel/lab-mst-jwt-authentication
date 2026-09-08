@@ -1,42 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    text: "",
-    selectedPlatforms: [],
+    posts: [
+        {
+            id: 1,
+            title: "React",
+            description: "Learn React Basics",
+            category: "React",
+        },
+        {
+            id: 2,
+            title: "Redux Toolkit",
+            description: "Learn Global State Management",
+            category: "Redux",
+        },
+    ],
 };
 
 const postSlice = createSlice({
-    name: "post",
+    name: "posts",
+
     initialState,
 
     reducers: {
-        togglePlatform: (state, action) => {
-            const platform = action.payload;
-
-            if (state.selectedPlatforms.includes(platform)) {
-                state.selectedPlatforms = state.selectedPlatforms.filter(
-                    (item) => item !== platform
-                );
-            } else {
-                state.selectedPlatforms.push(platform);
-            }
+        addPost: (state, action) => {
+            state.posts.push(action.payload);
         },
 
-        setPostText: (state, action) => {
-            state.text = action.payload;
-        },
-
-        clearPost: (state) => {
-            state.text = "";
-            state.selectedPlatforms = [];
+        deletePost: (state, action) => {
+            state.posts = state.posts.filter(
+                (post) => post.id !== action.payload
+            );
         },
     },
 });
 
-export const {
-    togglePlatform,
-    setPostText,
-    clearPost,
-} = postSlice.actions;
+export const { addPost, deletePost } = postSlice.actions;
 
 export default postSlice.reducer;
