@@ -1,0 +1,420 @@
+* {
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+  min-height: 100vh;
+
+  background: #f3f4f6;
+
+  padding: 45px 20px;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: 100%;
+
+  max-width: 850px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+
+.header h1 {
+  font-size: 25px;
+
+  font-weight: 700;
+
+  margin: 0 0 7px;
+}
+
+
+.header p {
+  margin: 0;
+
+  font-size: 14px;
+
+  color: #4b5563;
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.composer-card {
+  width: 100%;
+
+  max-width: 540px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 25px 20px;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+  margin-bottom: 22px;
+}
+
+
+.section h2,
+.validation-section h2 {
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  margin: 0 0 10px;
+}
+
+
+/* =========================
+   PLATFORM BUTTONS
+========================= */
+
+.platform-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+
+.platform-btn {
+  padding: 7px 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 5px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.platform-btn:hover {
+  border-color: #222;
+
+  transform: translateY(-1px);
+}
+
+
+.platform-btn.active {
+  background: #222;
+
+  color: white;
+
+  border-color: #222;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea {
+  width: 100%;
+
+  min-height: 120px;
+
+  resize: vertical;
+
+  padding: 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+textarea:focus {
+  border-color: #6b7280;
+}
+
+
+/* =========================
+   CHARACTER COUNT
+========================= */
+
+.character-count {
+  text-align: center;
+
+  margin-top: 8px;
+
+  color: #4b5563;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   VALIDATION
+========================= */
+
+.validation-section {
+  margin-bottom: 10px;
+}
+
+
+.validation-card {
+  background: #fafafa;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 6px;
+
+  padding: 12px;
+
+  margin-bottom: 10px;
+
+  text-align: center;
+}
+
+
+.validation-card h3 {
+  margin: 0 0 7px;
+
+  font-size: 13px;
+}
+
+
+.validation-card .limit {
+  margin: 0 0 6px;
+
+  color: #4b5563;
+
+  font-size: 12px;
+}
+
+
+.status {
+  margin: 0;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+
+.status.valid {
+  color: #374151;
+}
+
+
+.status.invalid {
+  color: #dc2626;
+}
+
+
+/* =========================
+   EMPTY MESSAGE
+========================= */
+
+.empty-message {
+  text-align: center;
+
+  color: #6b7280;
+
+  font-size: 12px;
+
+  padding: 10px;
+}
+
+
+/* =========================
+   OVERALL STATUS
+========================= */
+
+.overall-status {
+  text-align: center;
+
+  font-size: 12px;
+
+  margin: 10px 0 18px;
+
+  min-height: 16px;
+}
+
+
+.overall-status.valid {
+  color: #374151;
+}
+
+
+.overall-status.invalid {
+  color: #dc2626;
+}
+
+
+/* =========================
+   BUTTON CONTAINER
+========================= */
+
+.button-container {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+.create-btn {
+  border: none;
+
+  background: #222;
+
+  color: white;
+
+  padding: 8px 18px;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.create-btn:hover {
+  background: #000;
+}
+
+
+.create-btn:disabled {
+  background: #9ca3af;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   CLEAR BUTTON
+========================= */
+
+.clear-btn {
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  color: #111827;
+
+  padding: 8px 18px;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+
+.clear-btn:hover {
+  background: #f3f4f6;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .page {
+    padding: 30px 15px;
+  }
+
+
+  .header h1 {
+    font-size: 21px;
+  }
+
+
+  .header p {
+    font-size: 12px;
+  }
+
+
+  .composer-card {
+    padding: 20px 15px;
+  }
+
+
+  .platform-buttons {
+    gap: 6px;
+  }
+
+
+  .platform-btn {
+    font-size: 10px;
+
+    padding: 7px 10px;
+  }
+
+
+  textarea {
+    min-height: 130px;
+  }
+
+}
