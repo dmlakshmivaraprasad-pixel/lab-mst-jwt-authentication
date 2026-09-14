@@ -6,159 +6,355 @@ body {
   margin: 0;
 }
 
-.app {
+
+/* =========================
+   COMMON
+========================= */
+
+.auth-container,
+.dashboard-container {
+
   min-height: 100vh;
 
-  background: #f5f6fa;
+  background: #f4f6f8;
 
-  padding: 40px 20px;
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
 }
 
-.container {
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card {
+
   width: 100%;
 
-  max-width: 850px;
+  max-width: 420px;
 
-  margin: auto;
+  background: white;
 
-  text-align: center;
+  padding: 35px;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.container h1 {
-  font-size: 28px;
 
-  margin: 0 0 18px;
+.login-card h1 {
+
+  text-align: center;
+
+  margin: 0 0 8px;
+
+  font-size: 28px;
 
   color: #222;
 }
 
 
-/* Add Button */
+.subtitle {
 
-.add-btn {
-  background: #4169e1;
+  text-align: center;
 
-  color: white;
+  color: #666;
 
-  border: none;
+  margin-bottom: 28px;
 
-  padding: 10px 18px;
+  font-size: 14px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+  margin-bottom: 18px;
+}
+
+
+.form-group label {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.form-group input {
+
+  width: 100%;
+
+  padding: 11px;
+
+  border: 1px solid #ccc;
 
   border-radius: 5px;
 
   font-size: 14px;
 
-  cursor: pointer;
-
-  transition: 0.2s;
+  outline: none;
 }
 
-.add-btn:hover {
+
+.form-group input:focus {
+
+  border-color: #4169e1;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+
+  background: #ffe5e5;
+
+  color: #c62828;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn {
+
+  width: 100%;
+
+  padding: 11px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #4169e1;
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+
+.login-btn:hover {
+
   background: #3154bd;
 }
 
 
-/* Statistics */
+/* =========================
+   DEMO INFO
+========================= */
 
-.stats {
-  margin: 18px 0 20px;
-}
+.demo-info {
 
-.stats h2 {
-  font-size: 20px;
+  margin-top: 20px;
 
-  margin: 5px 0;
-}
+  padding: 12px;
 
-.stats h3 {
-  font-size: 15px;
+  background: #f1f3f5;
 
-  font-weight: 500;
+  border-radius: 5px;
+
+  text-align: center;
+
+  font-size: 12px;
 
   color: #555;
-
-  margin: 5px 0;
 }
 
 
-/* Post List */
+.demo-info p {
 
-.post-list {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
+  margin: 4px;
 }
 
 
-/* Post Card */
+/* =========================
+   DASHBOARD
+========================= */
 
-.post-card {
+.dashboard-card {
+
+  width: 100%;
+
+  max-width: 700px;
+
   background: white;
 
-  border: 1px solid #ddd;
+  padding: 30px;
 
-  border-radius: 7px;
+  border-radius: 10px;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.dashboard-card h1 {
+
+  text-align: center;
+
+  margin-top: 0;
+
+  color: #222;
+}
+
+
+.success-message {
+
+  text-align: center;
+
+  color: #198754;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   INFORMATION SECTIONS
+========================= */
+
+.user-info,
+.token-section,
+.session-section {
+
+  margin-top: 25px;
 
   padding: 18px;
 
-  box-shadow:
-    0 2px 7px rgba(0, 0, 0, 0.08);
+  background: #f8f9fa;
+
+  border-radius: 7px;
 }
 
-.post-card h2 {
-  font-size: 20px;
 
-  margin: 0 0 6px;
+.user-info h2,
+.token-section h2,
+.session-section h2 {
+
+  margin-top: 0;
+
+  font-size: 18px;
 }
 
-.post-card p {
-  margin: 0 0 12px;
 
-  color: #555;
+.user-info p,
+.session-section p {
 
   font-size: 14px;
+
+  color: #555;
 }
 
 
-/* Delete Button */
+/* =========================
+   JWT TOKEN
+========================= */
 
-.delete-btn {
+.token-section textarea {
+
+  width: 100%;
+
+  height: 100px;
+
+  resize: none;
+
+  padding: 10px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+
+  word-break: break-all;
+}
+
+
+/* =========================
+   SESSION
+========================= */
+
+.session-active {
+
+  color: #198754 !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-btn {
+
+  display: block;
+
+  margin: 25px auto 0;
+
+  padding: 10px 25px;
+
   background: #dc3545;
 
   color: white;
 
   border: none;
 
-  padding: 6px 14px;
-
-  border-radius: 4px;
-
-  font-size: 12px;
+  border-radius: 5px;
 
   cursor: pointer;
 }
 
-.delete-btn:hover {
+
+.logout-btn:hover {
+
   background: #b52a37;
 }
 
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
-  .app {
-    padding: 30px 15px;
+  .login-card,
+  .dashboard-card {
+
+    padding: 22px;
   }
 
-  .container h1 {
-    font-size: 22px;
-  }
 
-  .stats h2 {
-    font-size: 18px;
+  .login-card h1 {
+
+    font-size: 23px;
   }
 
 }

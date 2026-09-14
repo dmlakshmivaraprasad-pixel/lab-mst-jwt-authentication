@@ -1,76 +1,242 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-import { addPost } from "./redux/postSlice";
+import Login from "./components/Login";
 
-import {
-  selectTotalPosts,
-  selectReactPosts,
-} from "./redux/selectors";
-
-import PostList from "./components/PostList";
+import Dashboard from "./components/Dashboard";
 
 import "./App.css";
 
 
-function App() {
+// =====================================
+// CREATE MOCK JWT
+// =====================================
 
-  const dispatch = useDispatch();
+function createMockJWT(username) {
 
-  const totalPosts = useSelector(selectTotalPosts);
-
-  const reactPosts = useSelector(selectReactPosts);
-
-
-  const handleAddPost = () => {
-
-    const newPost = {
-      id: Date.now(),
-      title: "React",
-      description: "Learn React Basics",
-      category: "React",
-    };
-
-    dispatch(addPost(newPost));
+  const header = {
+    alg: "HS256",
+    typ: "JWT",
   };
 
 
+  const payload = {
+    userId: 101,
+    username: username,
+    role: "user",
+
+    exp:
+      Math.floor(Date.now() / 1000) +
+      60 * 60,
+  };
+
+
+  const encode = (object) => {
+
+    return btoa(
+      JSON.stringify(object)
+    )
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+
+  };
+
+
+  const encodedHeader =
+    encode(header);
+
+  const encodedPayload =
+    encode(payload);
+
+
+  // Simulated signature
+
+  const signature =
+    btoa("mock-signature-123456");
+
+
   return (
-
-    <div className="app">
-
-      <div className="container">
-
-        <h1>
-          Redux Toolkit Performance Demo
-        </h1>
+    `${encodedHeader}.` +
+    `${encodedPayload}.` +
+    `${signature}`
+  );
+}
 
 
-        <button
-          className="add-btn"
-          onClick={handleAddPost}
-        >
-          Add React Post
-        </button>
+// =====================================
+// DECODE JWT
+// =====================================
+
+function decodeJWT(token) {
+
+  try {
+
+    const parts =
+      token.split(".");
+
+    if (parts.length !== 3) {
+      return null;
+    }
 
 
-        <div className="stats">
-
-          <h2>
-            Total Posts : {totalPosts}
-          </h2>
-
-          <h3>
-            React Related Posts : {reactPosts.length}
-          </h3>
-
-        </div>
+    const payload =
+      parts[1]
+        .replace(/-/g, "+")
+        .replace(/_/g, "/");
 
 
-        <PostList />
+    return JSON.parse(
+      atob(payload)
+    );
 
-      </div>
+  } catch (error) {
 
-    </div>
+    return null;
+
+  }
+}
+
+
+// =====================================
+// CHECK TOKEN
+// =====================================
+
+function isTokenValid(token) {
+
+  const payload =
+    decodeJWT(token);
+
+
+  if (!payload) {
+    return false;
+  }
+
+
+  const currentTime =
+    Math.floor(Date.now() / 1000);
+
+
+  return payload.exp > currentTime;
+}
+
+
+// =====================================
+// APP
+// =====================================
+
+function App() {
+
+  const [token, setToken] =
+    useState(null);
+
+  const [user, setUser] =
+    useState(null);
+
+
+  // ===================================
+  // CHECK SAVED TOKEN
+  // ===================================
+
+  useEffect(() => {
+
+    const savedToken =
+      localStorage.getItem("jwtToken");
+
+
+    if (
+      savedToken &&
+      isTokenValid(savedToken)
+    ) {
+
+      const decodedUser =
+        decodeJWT(savedToken);
+
+
+      setToken(savedToken);
+
+      setUser(decodedUser);
+
+    } else {
+
+      localStorage.removeItem(
+        "jwtToken"
+      );
+
+    }
+
+  }, []);
+
+
+  // ===================================
+  // LOGIN
+  // ===================================
+
+  const handleLogin = (username) => {
+
+    const newToken =
+      createMockJWT(username);
+
+
+    localStorage.setItem(
+      "jwtToken",
+      newToken
+    );
+
+
+    const decodedUser =
+      decodeJWT(newToken);
+
+
+    setToken(newToken);
+
+    setUser(decodedUser);
+
+  };
+
+
+  // ===================================
+  // LOGOUT
+  // ===================================
+
+  const handleLogout = () => {
+
+    localStorage.removeItem(
+      "jwtToken"
+    );
+
+
+    setToken(null);
+
+    setUser(null);
+
+  };
+
+
+  // ===================================
+  // DASHBOARD
+  // ===================================
+
+  if (token && user) {
+
+    return (
+      <Dashboard
+        user={user}
+        token={token}
+        onLogout={handleLogout}
+      />
+    );
+
+  }
+
+
+  // ===================================
+  // LOGIN PAGE
+  // ===================================
+
+  return (
+    <Login
+      onLogin={handleLogin}
+    />
   );
 }
 
